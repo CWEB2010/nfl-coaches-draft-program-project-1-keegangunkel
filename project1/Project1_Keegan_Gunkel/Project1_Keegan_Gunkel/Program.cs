@@ -8,22 +8,22 @@ namespace Project1_Keegan_Gunkel
         {
 
             int amountOfPicks = 5;
-            double allowance = 95000000;
-            double costEffective = 65000000;
+            int allowance = 95000000;
+            int costEffective = 65000000;
             //Welcome message
             welcomeMessage(allowance, amountOfPicks, costEffective);
             //Quarterbacks list
-            Player joeBurrow = NewPlayer("Joe Burrow", "LSU", "26,400,100");
-            Player tuaTagoVailoa = NewPlayer("Tua Tagovailoa", "Alabama", "20,300,100");
-            Player justinHerbert = NewPlayer("Justin Herbert", "Oregon", "17,420,300");
-            Player jordanLove = NewPlayer("Jordan Love", "Utah St.", "13,100,145");
-            Player jakeFromm = NewPlayer("Jake Fromm", "Georgia", "10,300,000");
+            Player joeBurrow = NewPlayer("Joe Burrow", "LSU", 26400100);
+            Player tuaTagoVailoa = NewPlayer("Tua Tagovailoa", "Alabama", 20300100);
+            Player justinHerbert = NewPlayer("Justin Herbert", "Oregon", 17420300);
+            Player jordanLove = NewPlayer("Jordan Love", "Utah St.", 13100145);
+            Player jakeFromm = NewPlayer("Jake Fromm", "Georgia", 10300000);
             //Running Backs list
-            Player deandreSwift = NewPlayer("D'Andre Swift", "Georgia", "24,500,100");
-            Player jonathanTaylor = NewPlayer("Jonathan Taylor", "Wisconsin", "19,800,200");
-            Player jkDobbins = NewPlayer("J.K. Dobbins", "Ohio State", "18,700,800");
-            Player zackMoss = NewPlayer("Zack Moss", "Utah", "15,000,000");
-            Player camAtkers = NewPlayer("Cam Atkers", "Florida St.", "11,600,400");
+            Player deandreSwift = NewPlayer("D'Andre Swift", "Georgia", 24500100);
+            Player jonathanTaylor = NewPlayer("Jonathan Taylor", "Wisconsin", 19800200);
+            Player jkDobbins = NewPlayer("J.K. Dobbins", "Ohio State", 18700800);
+            Player zackMoss = NewPlayer("Zack Moss", "Utah", 15000000);
+            Player camAtkers = NewPlayer("Cam Atkers", "Florida St.", 11600400);
             // Wide Recievers list
            
             
@@ -31,16 +31,17 @@ namespace Project1_Keegan_Gunkel
             string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers" };
             // Player list to figure out which player the coach picked
             var players = new ArrayList();
+            var playerPrices = new ArrayList();
             // Multi Dimensional Arrays for each player position
             String[,] quarterBacks = {
                 { joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(), justinHerbert.name.ToUpper(), jordanLove.name.ToUpper(), jakeFromm.name.ToUpper() },
                 { "\t\t\t"+joeBurrow.school, "\t\t\t\t"+tuaTagoVailoa.school, "\t\t\t"+justinHerbert.school, "\t\t\t\t"+jordanLove.school, "\t\t\t"+jakeFromm.school},
-                { "\t\t\t"+joeBurrow.price,"\t\t\t"+tuaTagoVailoa.price,"\t\t\t"+justinHerbert.price,"\t\t\t"+jordanLove.price, "\t\t\t"+jakeFromm.price  }
+                { "\t\t\t"+joeBurrow.price.ToString("c"),"\t\t\t"+tuaTagoVailoa.price.ToString("c"),"\t\t\t"+justinHerbert.price.ToString("c"),"\t\t\t"+jordanLove.price.ToString("c"), "\t\t\t"+jakeFromm.price.ToString("c")  }
             };
             String[,] runningBacks =  {
                 {deandreSwift.name.ToUpper(), jonathanTaylor.name.ToUpper(), jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper() },
                 {"\t\t\t"+deandreSwift.school, "\t\t\t\t"+jonathanTaylor.school, "\t\t\t"+jkDobbins.school,"\t\t\t"+zackMoss.school,"\t\t\t\t"+camAtkers.school },
-                {"\t\t\t"+deandreSwift.price, "\t\t\t"+jonathanTaylor.price, "\t\t\t"+jkDobbins.price,"\t\t\t"+zackMoss.price,"\t\t\t"+camAtkers.price }
+                {"\t\t\t"+deandreSwift.price.ToString("c"), "\t\t\t"+jonathanTaylor.price.ToString("c"), "\t\t\t"+jkDobbins.price.ToString("c"),"\t\t\t"+zackMoss.price.ToString("c"),"\t\t\t"+camAtkers.price.ToString("c") }
             };
             DisplayQuarterbacks(quarterBacks, positions);
             DisplayRunningBacks(runningBacks, positions);
@@ -48,18 +49,17 @@ namespace Project1_Keegan_Gunkel
             Console.WriteLine("Who would you like to pick?");
             string coachPick = Console.ReadLine();
             coachPick = coachPick.ToUpper();
-            GetCoachPick(coachPick, players);
+            Console.WriteLine("How much does the player cost?");
+            string playerCost = Console.ReadLine();
+
+            GetCoachPick(coachPick, players, playerCost);
             // If logic for which player is picked and prints that player to the screen
                 if (coachPick == players[0])
-                {
-                    Console.WriteLine(players[0]);
-                    joeBurrow.price.Split(",", 3);
-                    Convert.ToInt32(joeBurrow.price);
-                    Console.WriteLine(players.price);
-
-                int number = Int32.Parse("number 32");
-
-                }
+            {
+                int playerPriceInt = Int32.Parse(playerCost);
+                int newBudget = allowance - playerPriceInt;
+                Console.WriteLine("You picked "+players[0]+" You have " + newBudget.ToString("c")+ " left to spend");
+            }
         }
         //Welcome message method
         static void welcomeMessage(double budget, int picks, double costEfficient)
@@ -101,7 +101,7 @@ namespace Project1_Keegan_Gunkel
             }
         }
         // Creates new player objects
-        public static Player NewPlayer(string playerName, string playerSchool, string playerCost)
+        public static Player NewPlayer(string playerName, string playerSchool, int playerCost)
         {
            
            Player aPlayer =  new Player();
@@ -114,10 +114,12 @@ namespace Project1_Keegan_Gunkel
 
         }
         //Gets the coach's pick
-        public static void GetCoachPick(string coachPick, ArrayList players)
+        public static void GetCoachPick(string coachPick, ArrayList players, string playerPrice)
         {
             string coachPickVar = coachPick;
             players.Add(coachPickVar);
+            
+
         }
     }
     //Class "blueprint" for my player objects
@@ -125,7 +127,7 @@ namespace Project1_Keegan_Gunkel
     {
         public string name { get; set; }
         public string school { get; set; }
-        public string price { get; set; }
+        public int price { get; set; }
         public string bio { get; set; }
 
     }
