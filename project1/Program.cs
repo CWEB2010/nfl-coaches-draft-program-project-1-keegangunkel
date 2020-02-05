@@ -12,6 +12,7 @@ namespace project1
             string[,] playerTable = { };
             
             welcomeMessage(allowance, amountOfPicks, costEffective);
+            newPlayer("Joe Burrow", "LSU", 26400100);
 
         }
 
@@ -43,7 +44,6 @@ namespace project1
             name = new Player();
             name.school = playerSchool;
             name.price = playerCost;
-            playerCost.Console.ForegroundColor(green);
             Console.WriteLine(name + "\n" + playerSchool + "\n" + playerCost);
 
         }
