@@ -19,34 +19,34 @@ namespace Project1_Keegan_Gunkel
             Player jordanLove = newPlayer("Jordan Love", "Utah St.", "13,100,145");
             Player jakeFromm = newPlayer("Jake Fromm", "Georgia", "10,300,000");
             //Running Backs
-            Player deandreSwift = newPlayer("D'Andre Swift", "Georgia", "24500100");
-            Player jonathanTaylor = newPlayer("Jonathan Taylor", "Wisconsin", "9800200");
-            Player jkDobbins = newPlayer("J.K. Dobbins", "Ohio State", "18700800");
-            Player zackMoss = newPlayer("Zack Moss", "Utah", "15000000");
-            Player camAtkers = newPlayer("Cam Atkers", "Florida St.", "11600400");
+            Player deandreSwift = newPlayer("D'Andre Swift", "Georgia", "24,500,100");
+            Player jonathanTaylor = newPlayer("Jonathan Taylor", "Wisconsin", "19,800,200");
+            Player jkDobbins = newPlayer("J.K. Dobbins", "Ohio State", "18,700,800");
+            Player zackMoss = newPlayer("Zack Moss", "Utah", "15,000,000");
+            Player camAtkers = newPlayer("Cam Atkers", "Florida St.", "11,600,400");
             // Wide Recievers
             string[] positions = { "Quarterbacks", "Running Backs" };
             // Mulri Dimensional Arrays for each player position
             String[,] quarterBacks = { 
-                { joeBurrow.name.ToUpper(), tuaTagoVailoa.name, justinHerbert.name, jordanLove.name, jakeFromm.name },
+                { joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(), justinHerbert.name.ToUpper(), jordanLove.name.ToUpper(), jakeFromm.name.ToUpper() },
                 { "\t\t\t"+joeBurrow.school, "\t\t\t\t"+tuaTagoVailoa.school, "\t\t\t"+justinHerbert.school, "\t\t\t\t"+jordanLove.school, "\t\t\t"+jakeFromm.school},
                 { "\t\t\t"+joeBurrow.price,"\t\t\t"+tuaTagoVailoa.price,"\t\t\t"+justinHerbert.price,"\t\t\t"+jordanLove.price, "\t\t\t"+jakeFromm.price  }
             };
             String[,] runningBacks =  {
-                {deandreSwift.name, jonathanTaylor.name, jkDobbins.name,zackMoss.name,camAtkers.name },
+                {deandreSwift.name.ToUpper(), jonathanTaylor.name.ToUpper(), jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper() },
                 {"\t\t\t"+deandreSwift.school, "\t\t\t\t"+jonathanTaylor.school, "\t\t\t"+jkDobbins.school,"\t\t\t"+zackMoss.school,"\t\t\t\t"+camAtkers.school },
-                {"\t\t\t"+deandreSwift.price, "\t\t\t"+jonathanTaylor.price, "\t\t\t\t"+jkDobbins.price,"\t\t\t"+zackMoss.price,"\t\t\t\t"+camAtkers.price }
+                {"\t\t\t"+deandreSwift.price, "\t\t\t"+jonathanTaylor.price, "\t\t\t"+jkDobbins.price,"\t\t\t"+zackMoss.price,"\t\t\t"+camAtkers.price }
             };
             displayQuarterbacks(quarterBacks, positions);
             displayRunningBacks(runningBacks, positions);
 
             Console.WriteLine("Who would you like to pick?");
             string coachPick = Console.ReadLine();
-            coachPick.ToLower();
+            coachPick.ToUpper();
             // If logic for which player is picked
-            if (coachPick == "joe burrow")
+            if (coachPick == "JOE BURROW")
             {
-                Console.WriteLine("You picked joe burrow.");
+                Console.WriteLine("You picked Joe Burrow.");
                 joeBurrow.price.Split(",", 3);
                 Int64.Parse(joeBurrow.price);
                 
