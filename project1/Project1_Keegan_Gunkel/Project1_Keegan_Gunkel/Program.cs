@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
-namespace Project1_Keegan_Gunkel
+
+namespace Project1_practice
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int sentinel = 0;
-            int amountOfPicks = 5;
-            int allowance = 95000000;
-            int costEffective = 65000000;
-            //Welcome message
-            welcomeMessage(allowance, amountOfPicks, costEffective);
-            //Quarterbacks list
             Player joeBurrow = NewPlayer("Joe Burrow", "LSU", 26400100);
             Player tuaTagoVailoa = NewPlayer("Tua Tagovailoa", "Alabama", 20300100);
             Player justinHerbert = NewPlayer("Justin Herbert", "Oregon", 17420300);
@@ -24,38 +17,40 @@ namespace Project1_Keegan_Gunkel
             Player jkDobbins = NewPlayer("J.K. Dobbins", "Ohio State", 18700800);
             Player zackMoss = NewPlayer("Zack Moss", "Utah", 15000000);
             Player camAtkers = NewPlayer("Cam Atkers", "Florida St.", 11600400);
-            // Wide Recievers list
-           
-            
             // Positions lsit
             string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers" };
+            // Multi Dimensional Arrays for each player position
+            String[,] quarterBacks = {
+                { "\t"+joeBurrow.name.ToUpper(), "\t\t\t"+tuaTagoVailoa.name.ToUpper(), "\t\t\t"+justinHerbert.name.ToUpper(), "\t\t\t"+jordanLove.name.ToUpper(), "\t\t\t"+jakeFromm.name.ToUpper() },
+                { "\t\t\t"+joeBurrow.school, "\t\t\t\t"+tuaTagoVailoa.school, "\t\t\t"+justinHerbert.school, "\t\t\t\t"+jordanLove.school, "\t\t\t"+jakeFromm.school},
+                { "\t\t\t"+joeBurrow.price.ToString("c"),"\t\t\t"+tuaTagoVailoa.price.ToString("c"),"\t\t\t"+justinHerbert.price.ToString("c"),"\t\t\t"+jordanLove.price.ToString("c"), "\t\t\t"+jakeFromm.price.ToString("c")  }
+            };
+            String[,] runningBacks =  {
+                {"\t"+deandreSwift.name.ToUpper(), "\t\t\t"+jonathanTaylor.name.ToUpper(), "\t\t\t"+jkDobbins.name.ToUpper(),"\t\t\t"+zackMoss.name.ToUpper(),"\t\t\t"+camAtkers.name.ToUpper() },
+                {"\t\t\t"+deandreSwift.school, "\t\t\t\t"+jonathanTaylor.school, "\t\t\t"+jkDobbins.school,"\t\t\t"+zackMoss.school,"\t\t\t\t"+camAtkers.school },
+                {"\t\t\t"+deandreSwift.price.ToString("c"), "\t\t\t"+jonathanTaylor.price.ToString("c"), "\t\t\t"+jkDobbins.price.ToString("c"),"\t\t\t"+zackMoss.price.ToString("c"),"\t\t\t"+camAtkers.price.ToString("c") }
+            };
             String[] playerNames ={joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(),justinHerbert.name.ToUpper(),jordanLove.name.ToUpper(),jakeFromm.name.ToUpper(),deandreSwift.name.ToUpper(),jonathanTaylor.name.ToUpper(),
                                 jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper()};
             int[] playerPrices = { joeBurrow.price, tuaTagoVailoa.price, justinHerbert.price, jordanLove.price, jakeFromm.price, deandreSwift.price, jonathanTaylor.price, jkDobbins.price, zackMoss.price, camAtkers.price };
             int[] budgets = { 95000000, 0, 0, 0, 0, 0 };
-            var coachPicks = new ArrayList();
             Console.WriteLine(playerNames[0]);
             string coachPick;
             string coachPick2;
             string coachPick3;
             string coachPick4;
             string coachPick5;
+            //Welcome message
+            welcomeMessage();
+            DisplayQuarterbacks(quarterBacks, positions);
+            DisplayRunningBacks(runningBacks, positions);
 
             while (true)
             {
-                /* for (var i = 0; i < players.GetLength(0); i++)
-                 {
-                     for (var x = 0; x < players.GetLength(1); x++)
-                     {
-                         Console.Write($"{players[i, x]} ");
-                     }
-                     Console.WriteLine("");
-                 }*/
                 //Pick 1
                 Console.WriteLine("Please enter a player");
                 coachPick = Console.ReadLine();
                 coachPick = coachPick.ToUpper();
-                coachPicks.Add(coachPick);
                 GetChosenPlayerAndPrice(playerNames, coachPick, playerPrices, budgets, 0, 1);
             //Decision1 and pick 2
             Decision1:
@@ -299,20 +294,35 @@ namespace Project1_Keegan_Gunkel
                 }
             }
         }
-    
+
+
+        //Gives attributes to the player object
+        public static Player NewPlayer(string playerName, string playerSchool, int playerCost)
+        {
+
+            Player aPlayer = new Player();
+            aPlayer.name = playerName;
+            aPlayer.school = playerSchool;
+            aPlayer.price = playerCost;
+            aPlayer.bio = playerName + "\n" + "(" + playerSchool + ")" + "\n" + playerCost.ToString("c") + "\n";
+            //Console.WriteLine(aPlayer.bio);
+            return aPlayer;
+
+
+        }
         //Welcome message method
-        static void welcomeMessage(double budget, int picks, double costEfficient)
+        static void welcomeMessage()
         {
             Console.WriteLine("Welcome to the 2020 draft program!");
-            Console.WriteLine("You can take up to " + picks + " picks for the draft without exceeding your " + budget + " budget.");
-            Console.WriteLine("If you select any 3 players in the best, 2nd best, or 3rd best category under " + costEfficient + " , you get a cost effective message");
+            Console.WriteLine("You can take up to 5 picks for the draft without exceeding your $95,000,000 budget.");
+            Console.WriteLine("If you select any 3 players in the best, 2nd best, or 3rd best category under $65,000,000, you get a cost effective message");
             Console.WriteLine("Press any key to continue and go fullscreen after you enter the key.");
             Console.ReadKey();
             Console.Clear();
 
         }
         //Displays Quarter Backs
-        public static void DisplayQuarterbacks(String[,] quarterbacks, string [] positions)
+        public static void DisplayQuarterbacks(String[,] quarterbacks, string[] positions)
         {
             Console.WriteLine($"\t\t\t The best \t\t\t 2nd best \t\t\t 3rd best \t\t\t 4th best \t\t\t 5th best\n");
             Console.Write(positions[0] + "\t");
@@ -320,11 +330,11 @@ namespace Project1_Keegan_Gunkel
             {
                 for (var x = 0; x < quarterbacks.GetLength(1); x++)
                 {
-                    Console.Write($"{quarterbacks[i,x]} ");
+                    Console.Write($"{quarterbacks[i, x]} ");
                 }
                 Console.WriteLine("");
             }
-        } 
+        }
         //Displays Running Backs
         public static void DisplayRunningBacks(String[,] runningbacks, string[] positions)
         {
@@ -339,21 +349,9 @@ namespace Project1_Keegan_Gunkel
                 Console.WriteLine("");
             }
         }
-        // Creates new player objects
-        public static Player NewPlayer(string playerName, string playerSchool, int playerCost)
-        {
-           
-           Player aPlayer =  new Player();
-            aPlayer.name = "\t" + playerName + "\t\t";
-            aPlayer.school = playerSchool  ;
-            aPlayer.price =  playerCost ;
-            aPlayer.bio = playerName + "\n" + "("+playerSchool+")" + "\n" + "$" + playerCost + "\n";
-            //Console.WriteLine(aPlayer.bio);
-            return aPlayer;
-
-        }
     }
-    //Class "blueprint" for my player objects
+
+    //Class "blueprint" for the palyer object
     class Player
     {
         public string name { get; set; }
