@@ -6,7 +6,7 @@ namespace Project1_Keegan_Gunkel
     {
         static void Main(string[] args)
         {
-
+            int sentinel = 0;
             int amountOfPicks = 5;
             int allowance = 95000000;
             int costEffective = 65000000;
@@ -29,56 +29,61 @@ namespace Project1_Keegan_Gunkel
             
             // Positions lsit
             string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers" };
-            // Player list to figure out which player the coach picked
-            var players = new ArrayList();
-            var playerPrices = new ArrayList();
-            // Multi Dimensional Arrays for each player position
-            String[,] quarterBacks = {
-                { joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(), justinHerbert.name.ToUpper(), jordanLove.name.ToUpper(), jakeFromm.name.ToUpper() },
-                { "\t\t\t"+joeBurrow.school, "\t\t\t\t"+tuaTagoVailoa.school, "\t\t\t"+justinHerbert.school, "\t\t\t\t"+jordanLove.school, "\t\t\t"+jakeFromm.school},
-                { "\t\t\t"+joeBurrow.price.ToString("c"),"\t\t\t"+tuaTagoVailoa.price.ToString("c"),"\t\t\t"+justinHerbert.price.ToString("c"),"\t\t\t"+jordanLove.price.ToString("c"), "\t\t\t"+jakeFromm.price.ToString("c")  }
-            };
-            String[,] runningBacks =  {
-                {deandreSwift.name.ToUpper(), jonathanTaylor.name.ToUpper(), jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper() },
-                {"\t\t\t"+deandreSwift.school, "\t\t\t\t"+jonathanTaylor.school, "\t\t\t"+jkDobbins.school,"\t\t\t"+zackMoss.school,"\t\t\t\t"+camAtkers.school },
-                {"\t\t\t"+deandreSwift.price.ToString("c"), "\t\t\t"+jonathanTaylor.price.ToString("c"), "\t\t\t"+jkDobbins.price.ToString("c"),"\t\t\t"+zackMoss.price.ToString("c"),"\t\t\t"+camAtkers.price.ToString("c") }
-            };
-                DisplayQuarterbacks(quarterBacks, positions);
-                DisplayRunningBacks(runningBacks, positions);
-            while (true) { 
-                Console.WriteLine("Who would you like to pick?");
-                string coachPick = Console.ReadLine();
-                coachPick = coachPick.ToUpper();
-                Console.WriteLine("How much does the player cost? (No commas needed)");
-                string playerCost = Console.ReadLine();
-                GetCoachPick(coachPick, players, playerCost);
-                int playerPriceInt1 = Int32.Parse(playerCost);
-                int budget = allowance - playerPriceInt1;
-                // If logic for which player is picked and prints that player to the screen
-                if (coachPick == players[0])
-                {
+            String[] playerNames ={joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(),justinHerbert.name.ToUpper(),jordanLove.name.ToUpper(),jakeFromm.name.ToUpper(),deandreSwift.name.ToUpper(),jonathanTaylor.name.ToUpper(),
+                                jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper()};
+            int[] playerPrices = { joeBurrow.price, tuaTagoVailoa.price, justinHerbert.price, jordanLove.price, jakeFromm.price, deandreSwift.price, jonathanTaylor.price, jkDobbins.price, zackMoss.price, camAtkers.price };
+            int[] budgets = { 95000000, 0, 0, 0, 0, 0 };
+            var coachPicks = new ArrayList();
+            Console.WriteLine(playerNames[0]);
+            string coachPick;
+            string coachPick2;
+            string coachPick3;
+            string coachPick4;
+            string coachPick5;
 
-                    Console.WriteLine("You picked " + players[0] + " You have " + budget.ToString("c") + " left to spend");
-                }
-                //Pick 2
+            while (true)
+            {
+                /* for (var i = 0; i < players.GetLength(0); i++)
+                 {
+                     for (var x = 0; x < players.GetLength(1); x++)
+                     {
+                         Console.Write($"{players[i, x]} ");
+                     }
+                     Console.WriteLine("");
+                 }*/
+                //Pick 1
+                Console.WriteLine("Please enter a player");
+                coachPick = Console.ReadLine();
+                coachPick = coachPick.ToUpper();
+                coachPicks.Add(coachPick);
+                GetChosenPlayerAndPrice(playerNames, coachPick, playerPrices, budgets, 0, 1);
+            //Decision1 and pick 2
+            Decision1:
                 Console.WriteLine("Would you like to pick another player? Y/N");
                 string yesOrNoDecision = Console.ReadLine();
-                Decision1:
                 if (yesOrNoDecision == "Y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick2 = Console.ReadLine();
+                    coachPick2 = coachPick2.ToUpper();
+                    if (coachPick == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick2 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick2, playerPrices, budgets, 1, 2);
                 }
                 else if (yesOrNoDecision == "y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick2 = Console.ReadLine();
+                    coachPick2 = coachPick2.ToUpper();
+                    if (coachPick == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick2 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick2, playerPrices, budgets, 1, 2);
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -91,35 +96,45 @@ namespace Project1_Keegan_Gunkel
                 else
                 {
                     Console.WriteLine("Error please enter Y or N");
-                    yesOrNoDecision = Console.ReadLine();
                     goto Decision1;
                 }
-                GetCoachPick(coachPick, players, playerCost);
-                int playerPriceInt2 = Int32.Parse(playerCost);
-                int budget2 = budget - playerPriceInt2;
-                if (coachPick == players[1])
-                {
-                    Console.WriteLine("You picked " + players[1] + " You have " + budget2.ToString("c") + " left to spend");
-                }
-                //Pick 3
-               Console.WriteLine("Would you like to pick another player? Y/N");
-                yesOrNoDecision = Console.ReadLine();
+            //Decision2 and Pick 3
             Decision2:
+                Console.WriteLine("Would you like to pick another player? Y/N");
+                yesOrNoDecision = Console.ReadLine();
                 if (yesOrNoDecision == "Y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick3 = Console.ReadLine();
+                    coachPick3 = coachPick3.ToUpper();
+                    if (coachPick3 == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick3 = Console.ReadLine();
+                    }
+                    else if (coachPick3 == coachPick)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick3 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick3, playerPrices, budgets, 2, 3);
                 }
                 else if (yesOrNoDecision == "y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick3 = Console.ReadLine();
+                    coachPick3 = coachPick3.ToUpper();
+                    if (coachPick3 == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick3 = Console.ReadLine();
+                    }
+                    else if (coachPick3 == coachPick)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick3 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick3, playerPrices, budgets, 2, 3);
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -132,35 +147,55 @@ namespace Project1_Keegan_Gunkel
                 else
                 {
                     Console.WriteLine("Error please enter Y or N");
-                    yesOrNoDecision = Console.ReadLine();
                     goto Decision2;
                 }
-                GetCoachPick(coachPick, players, playerCost);
-                int playerPriceInt3 = Int32.Parse(playerCost);
-                int budget3 = budget2 - playerPriceInt3;
-                if (coachPick == players[2])
-                {
-                    Console.WriteLine("You picked " + players[2] + " You have " + budget3.ToString("c") + " left to spend");
-                }
-                // Pick 4
+            //Decision3 and pick 4
+            Decision3:
                 Console.WriteLine("Would you like to pick another player? Y/N");
                 yesOrNoDecision = Console.ReadLine();
-            Decision3:
                 if (yesOrNoDecision == "Y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick4 = Console.ReadLine();
+                    coachPick4 = coachPick3.ToUpper();
+                    if (coachPick4 == coachPick3)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick4 = Console.ReadLine();
+                    }
+                    else if (coachPick4 == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick4 = Console.ReadLine();
+                    }
+                    else if (coachPick4 == coachPick)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick4 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick4, playerPrices, budgets, 3, 4);
                 }
                 else if (yesOrNoDecision == "y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick4 = Console.ReadLine();
+                    coachPick4 = coachPick3.ToUpper();
+                    if (coachPick4 == coachPick3)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick4 = Console.ReadLine();
+                    }
+                    else if (coachPick4 == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick4 = Console.ReadLine();
+                    }
+                    else if (coachPick4 == coachPick)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick4 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick4, playerPrices, budgets, 3, 4);
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -173,35 +208,65 @@ namespace Project1_Keegan_Gunkel
                 else
                 {
                     Console.WriteLine("Error please enter Y or N");
-                    yesOrNoDecision = Console.ReadLine();
                     goto Decision3;
                 }
-                GetCoachPick(coachPick, players, playerCost);
-                int playerPriceInt4 = Int32.Parse(playerCost);
-                int budget4 = budget3 - playerPriceInt4;
-                if (coachPick == players[3])
-                {
-                    Console.WriteLine("You picked " + players[3] + " You have " + budget4.ToString("c") + " left to spend");
-                }
-                //Pick 5
+            //Decision 4 and pick 5
+            Decision4:
                 Console.WriteLine("Would you like to pick another player? Y/N");
                 yesOrNoDecision = Console.ReadLine();
-            Decision4:
                 if (yesOrNoDecision == "Y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick5 = Console.ReadLine();
+                    coachPick5 = coachPick5.ToUpper();
+                    if (coachPick5 == coachPick4)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    else if (coachPick5 == coachPick3)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    else if (coachPick5 == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    else if (coachPick5 == coachPick)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick5, playerPrices, budgets, 4, 5);
                 }
                 else if (yesOrNoDecision == "y")
                 {
                     Console.WriteLine("Who would you like to pick?");
-                    coachPick = Console.ReadLine();
-                    coachPick = coachPick.ToUpper();
-                    Console.WriteLine("How much does the player cost?");
-                    playerCost = Console.ReadLine();
+                    coachPick5 = Console.ReadLine();
+                    coachPick5 = coachPick5.ToUpper();
+                    if (coachPick5 == coachPick4)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    else if (coachPick5 == coachPick3)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    else if (coachPick5 == coachPick2)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    else if (coachPick5 == coachPick)
+                    {
+                        Console.WriteLine("Please enter a player you haven't picked yet.");
+                        coachPick5 = Console.ReadLine();
+                    }
+                    GetChosenPlayerAndPrice(playerNames, coachPick5, playerPrices, budgets, 4, 5);
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -214,34 +279,27 @@ namespace Project1_Keegan_Gunkel
                 else
                 {
                     Console.WriteLine("Error please enter Y or N");
-                    yesOrNoDecision = Console.ReadLine();
                     goto Decision4;
                 }
-                GetCoachPick(coachPick, players, playerCost);
-                int playerPriceInt5 = Int32.Parse(playerCost);
-                int budget5 = budget4 - playerPriceInt5;
-                if (coachPick == players[4])
-                {
-                    Console.WriteLine("You picked " + players[4] + " You have ended with " + budget5.ToString("c") + " left to spend");
-                }
-                if (budget5 >= 30000000)
-                {
-                    Console.Clear();
-                    Console.WriteLine(" You picked: "+ players[0] + " " + players[1]+ " " + players[2] + " " + players[3]+ " "+ players[4]+" you were cost effective. Enjoy your new drafted players!");
-                    break;
-
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine(" You picked: " + players[0] + " " + players[1] + " " + players[2] + " " + players[3] + " " + players[4] + " enjoy your new drafted players!"); break;
-                }
-
-
-
-
-            }//While true
+            }
         }
+        // Gets what player the user entered and that player's price
+        public static void GetChosenPlayerAndPrice(string[] names, string playerPick, int[] prices, int[] budgets, int budgetPos, int newBudgetPos)
+        {
+            playerPick = playerPick.ToUpper();
+            for (var i = 0; i < names.GetLength(0); i++)
+            {
+                if (playerPick == names[i])
+                {
+                    Console.WriteLine("You picked " + names[i]);
+                    Console.WriteLine("The cost " + prices[i].ToString("c"));
+                    budgets[newBudgetPos] = budgets[budgetPos] - prices[i];
+                    Console.WriteLine("You have " + budgets[newBudgetPos].ToString("c") + " left to spend");
+
+                }
+            }
+        }
+    
         //Welcome message method
         static void welcomeMessage(double budget, int picks, double costEfficient)
         {
@@ -292,14 +350,6 @@ namespace Project1_Keegan_Gunkel
             aPlayer.bio = playerName + "\n" + "("+playerSchool+")" + "\n" + "$" + playerCost + "\n";
             //Console.WriteLine(aPlayer.bio);
             return aPlayer;
-
-        }
-        //Gets the coach's pick
-        public static void GetCoachPick(string coachPick, ArrayList players, string playerPrice)
-        {
-            string coachPickVar = coachPick;
-            players.Add(coachPickVar);
-            
 
         }
     }
