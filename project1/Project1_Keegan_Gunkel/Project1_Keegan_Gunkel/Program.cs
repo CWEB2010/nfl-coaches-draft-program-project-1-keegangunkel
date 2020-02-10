@@ -26,31 +26,94 @@ namespace Project1_practice
             Player tylerJohnson = NewPlayer("Tyler Johnson", "Minnesota", 10000000);
             //Defensive linemen
             Player chaseYoung = NewPlayer("Chase Young", "Ohio St.", 26200300);
+            Player derrickBrown = NewPlayer("Derrick Brown", "Auburn", 22000000);
+            Player ajEpenesa = NewPlayer("A.J. Epenesa", "Iowa", 16000000);
+            Player javonKinlaw = NewPlayer("Javon Kinlaw", "So. Carolina", 18000000);
+            Player yeturGrossMatos = NewPlayer("Yetur Gross-Matos", "Penn St.", 13000000);
+            //Defensive backs
+            Player jeffOkudah = NewPlayer("Jeff Okudah", "Ohio St.", 24000000);
+            Player grantDelpit = NewPlayer("Grant Delpit", "LSU", 22500249);
+            Player kristianFulton = NewPlayer("Kristian Fulton", "LSU", 20000100);
+            Player xavierMckinney = NewPlayer("Xavier Mckinney", "Alabama", 16000200);
+            Player cjHenderson = NewPlayer("CJ Henderson", "Florida", 11899999);
+            // Tight Ends 
+            Player coleKmet = NewPlayer("Cole Kmet", "Notre Dame", 27800900);
+            Player brycenHopkins = NewPlayer("Brycen Hopkins", "Purdue", 21000800);
+            Player hunterBryant = NewPlayer("Hunter Bryant", "Washington", 17499233);
+            Player jaredPinkney = NewPlayer("Jared Pinkney", "Vanderbilt", 27900200);
+            Player jacobBreeland = NewPlayer("Jacob Breeland", "Oregon", 14900333);
+            // Line-Backer's
+            Player isaiahSimmons = NewPlayer("Isaiah Simmons", "Clemson", 22900300);
+            Player kennethMurray = NewPlayer("Kenneth Murray", "Oklahoma", 19000590);
+            Player zackBaun = NewPlayer("Zack Baun", "Wisconsin", 18000222);
+            Player akeemDavisGaither = NewPlayer("Akeem Davis-Gaither", "App. St.", 12999999);
+            Player troyDye = NewPlayer("Troy Dye", "Oregon", 10000100);
+            // Offensive Tackles
+            Player jedrickWillsJr = NewPlayer("Jedrick Wills Jr.", "Alabama", 23000000);
+            Player andrewThomas = NewPlayer("Andrew Thomas", "Georgia", 20000000);
+            Player tristanWirfs = NewPlayer("Tristan Wirds", "Iowa", 19400000);
+            Player tylerBiadasz = NewPlayer("Tyler Biadasz", "Wisconsin", 16200700);
+            Player mekhiBecton = NewPlayer("Mekhi Becton", "Louisville", 15900000);
+
             // Positions list
-            string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers" };
+            string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers", "Defensive Linemen", "Defensive Backs", "Tight Ends", "Line-Backer's", "Offensive Tackles"};
             // Multi-Dimensional arrays for each player position
             String[,] quarterBacks = {
                 { "\t"+joeBurrow.name.ToUpper(), "\t\t\t"+tuaTagoVailoa.name.ToUpper(), "\t\t\t"+justinHerbert.name.ToUpper(), "\t\t\t"+jordanLove.name.ToUpper(), "\t\t\t"+jakeFromm.name.ToUpper() },
-                { "\t\t\t"+joeBurrow.school, "\t\t\t\t"+tuaTagoVailoa.school, "\t\t\t"+justinHerbert.school, "\t\t\t\t"+jordanLove.school, "\t\t\t"+jakeFromm.school},
+                { "\t\t\t"+joeBurrow.school.ToUpper(), "\t\t\t\t"+tuaTagoVailoa.school.ToUpper(), "\t\t\t"+justinHerbert.school.ToUpper(), "\t\t\t\t"+jordanLove.school.ToUpper(), "\t\t\t"+jakeFromm.school.ToUpper()},
                 { "\t\t\t"+joeBurrow.price.ToString("c"),"\t\t\t"+tuaTagoVailoa.price.ToString("c"),"\t\t\t"+justinHerbert.price.ToString("c"),"\t\t\t"+jordanLove.price.ToString("c"), "\t\t\t"+jakeFromm.price.ToString("c")  }
             };
             String[,] runningBacks =  {
-                {"\t"+deandreSwift.name.ToUpper(), "\t\t\t"+jonathanTaylor.name.ToUpper(), "\t\t\t"+jkDobbins.name.ToUpper(),"\t\t\t"+zackMoss.name.ToUpper(),"\t\t\t"+camAtkers.name.ToUpper() },
-                {"\t\t\t"+deandreSwift.school, "\t\t\t\t"+jonathanTaylor.school, "\t\t\t"+jkDobbins.school,"\t\t\t"+zackMoss.school,"\t\t\t\t"+camAtkers.school },
+                {"\t"+deandreSwift.name.ToUpper(), "\t\t\t"+jonathanTaylor.name.ToUpper(), "\t\t"+jkDobbins.name.ToUpper(),"\t\t\t"+zackMoss.name.ToUpper(),"\t\t\t"+camAtkers.name.ToUpper() },
+                {"\t\t\t"+deandreSwift.school.ToUpper(), "\t\t\t"+jonathanTaylor.school.ToUpper(), "\t\t\t"+jkDobbins.school.ToUpper(),"\t\t\t"+zackMoss.school.ToUpper(),"\t\t\t\t"+camAtkers.school.ToUpper() },
                 {"\t\t\t"+deandreSwift.price.ToString("c"), "\t\t\t"+jonathanTaylor.price.ToString("c"), "\t\t\t"+jkDobbins.price.ToString("c"),"\t\t\t"+zackMoss.price.ToString("c"),"\t\t\t"+camAtkers.price.ToString("c") }
             };
-            String[,] wideRecievers =
-            {
+            String[,] wideRecievers = {
                 {"\t"+ceeDeeLamb.name.ToUpper(),"\t\t\t"+jerryJeudy.name.ToUpper(),"\t\t\t"+teeHiggins.name.ToUpper(),"\t\t\t"+henryRuggsIII.name.ToUpper(),"\t\t\t"+tylerJohnson.name.ToUpper() },
-                {"\t\t\t"+ceeDeeLamb.school,"\t\t\t"+jerryJeudy.school,"\t\t\t"+teeHiggins.school,"\t\t\t"+henryRuggsIII.school,"\t\t\t\t"+tylerJohnson.school },
+                {"\t\t\t"+ceeDeeLamb.school.ToUpper(),"\t\t\t"+jerryJeudy.school.ToUpper(),"\t\t\t"+teeHiggins.school.ToUpper(),"\t\t\t"+henryRuggsIII.school.ToUpper(),"\t\t\t\t"+tylerJohnson.school.ToUpper() },
                 {"\t\t\t"+ceeDeeLamb.price.ToString("c"),"\t\t\t"+jerryJeudy.price.ToString("c"),"\t\t\t"+teeHiggins.price.ToString("c"),"\t\t\t"+henryRuggsIII.price.ToString("c"),"\t\t\t"+tylerJohnson.price.ToString("c") }
             };
-
+            String[,] defensiveLinemen = {
+                { chaseYoung.name.ToUpper(),"\t\t\t" + derrickBrown.name.ToUpper(),"\t\t\t" + ajEpenesa.name.ToUpper(), "\t\t\t" + javonKinlaw.name.ToUpper(),"\t\t\t" + yeturGrossMatos.name.ToUpper()},
+                {"\t\t\t"+chaseYoung.school.ToUpper(),"\t\t\t"+derrickBrown.school.ToUpper(),"\t\t\t\t"+ajEpenesa.school.ToUpper(),"\t\t\t\t"+javonKinlaw.school.ToUpper(),"\t\t\t"+yeturGrossMatos.school.ToUpper()},
+                {"\t\t\t"+ chaseYoung.price.ToString("c"),"\t\t\t"+ derrickBrown.price.ToString("c"),"\t\t\t"+ ajEpenesa.price.ToString("c"),"\t\t\t"+ javonKinlaw.price.ToString("c"),"\t\t\t"+ yeturGrossMatos.price.ToString("c"), }
+            };
+            String[,] defensiveBacks = {
+                {"\t"+jeffOkudah.name.ToUpper(),"\t\t\t"+grantDelpit.name.ToUpper(),"\t\t\t"+kristianFulton.name.ToUpper()+"\t","\t\t"+xavierMckinney.name.ToUpper(), "\t\t\t"+cjHenderson.name.ToUpper() },
+                {"\t\t\t"+jeffOkudah.school.ToUpper(),"\t\t\t"+grantDelpit.school.ToUpper(),"\t\t\t\t"+kristianFulton.school.ToUpper(),"\t\t\t\t"+xavierMckinney.school.ToUpper(), "\t\t\t\t"+cjHenderson.school.ToUpper()},
+                {"\t\t\t"+jeffOkudah.price.ToString("c"), "\t\t\t"+grantDelpit.price.ToString("c"), "\t\t\t"+kristianFulton.price.ToString("c"), "\t\t\t"+xavierMckinney.price.ToString("c"),"\t\t\t"+cjHenderson.price.ToString("c")}
+            };
+            String[,] tightEnds = {
+                {"\t"+coleKmet.name.ToUpper(), "\t\t\t"+brycenHopkins.name.ToUpper(), "\t\t\t"+hunterBryant.name.ToUpper(),"\t\t\t"+jaredPinkney.name.ToUpper(),"\t\t\t"+jacobBreeland.name.ToUpper() },
+                {"\t\t\t"+coleKmet.school.ToUpper(),"\t\t\t"+brycenHopkins.school.ToUpper(), "\t\t\t\t"+hunterBryant.school.ToUpper(),"\t\t\t"+jaredPinkney.school.ToUpper(),"\t\t\t"+jacobBreeland.school.ToUpper()},
+                {"\t\t\t"+coleKmet.price.ToString("c"),"\t\t\t"+brycenHopkins.price.ToString("c"),"\t\t\t"+hunterBryant.price.ToString("c"),"\t\t\t"+jaredPinkney.price.ToString("c"),"\t\t\t"+jacobBreeland.price.ToString("c") }
+            };
+            String[,] lineBackers = {
+                {"\t"+isaiahSimmons.name.ToUpper(), "\t\t\t"+kennethMurray.name.ToUpper(),"\t\t\t"+zackBaun.name.ToUpper(),"\t\t\t"+akeemDavisGaither.name.ToUpper(),"\t\t"+troyDye.name.ToUpper()},
+                {"\t\t\t"+isaiahSimmons.school.ToUpper(),"\t\t\t"+kennethMurray.school.ToUpper(),"\t\t\t"+zackBaun.school.ToUpper(),"\t\t\t"+akeemDavisGaither.school.ToUpper(),"\t\t\t"+troyDye.school.ToUpper()},
+                {"\t\t\t"+isaiahSimmons.price.ToString("c"), "\t\t\t"+kennethMurray.price.ToString("c"),"\t\t\t"+zackBaun.price.ToString("c"),"\t\t\t"+akeemDavisGaither.price.ToString("c"),"\t\t\t"+troyDye.price.ToString("c")}
+            };
+            String[,] offensiveTackles = {
+                {jedrickWillsJr.name.ToUpper(),"\t\t"+andrewThomas.name.ToUpper(),"\t\t\t"+tristanWirfs.name.ToUpper(),"\t\t\t"+tylerBiadasz.name.ToUpper(),"\t\t\t"+mekhiBecton.name.ToUpper()},
+                {"\t\t\t"+jedrickWillsJr.school.ToUpper(),"\t\t\t"+andrewThomas.school.ToUpper(), "\t\t\t"+tristanWirfs.school.ToUpper(),"\t\t\t\t"+tylerBiadasz.school.ToUpper(),"\t\t\t"+mekhiBecton.school.ToUpper()},
+                {"\t\t\t"+jedrickWillsJr.price.ToString("c"),"\t\t\t"+andrewThomas.price.ToString("c"),"\t\t\t"+tristanWirfs.price.ToString("c"),"\t\t\t"+tylerBiadasz.price.ToString("c"),"\t\t\t"+mekhiBecton.price.ToString("c") }
+            };
+            // Player names array to know what player the user picked
             String[] playerNames ={joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(),justinHerbert.name.ToUpper(),jordanLove.name.ToUpper(),jakeFromm.name.ToUpper(),deandreSwift.name.ToUpper(),jonathanTaylor.name.ToUpper(),
-                                jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper()};
-            int[] playerPrices = { joeBurrow.price, tuaTagoVailoa.price, justinHerbert.price, jordanLove.price, jakeFromm.price, deandreSwift.price, jonathanTaylor.price, jkDobbins.price, zackMoss.price, camAtkers.price };
+                                jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper(),ceeDeeLamb.name.ToUpper(),jerryJeudy.name.ToUpper(),teeHiggins.name.ToUpper(),henryRuggsIII.name.ToUpper(),tylerJohnson.name.ToUpper(),
+                                chaseYoung.name.ToUpper(),derrickBrown.name.ToUpper(),ajEpenesa.name.ToUpper(),javonKinlaw.name.ToUpper(),yeturGrossMatos.name.ToUpper(), jeffOkudah.name.ToUpper(),grantDelpit.name.ToUpper(),
+                                kristianFulton.name.ToUpper(),xavierMckinney.name.ToUpper(), cjHenderson.name.ToUpper(),coleKmet.name.ToUpper(), brycenHopkins.name.ToUpper(),hunterBryant.name.ToUpper(),jaredPinkney.name.ToUpper(),jacobBreeland.name.ToUpper(),
+                                isaiahSimmons.name.ToUpper(),kennethMurray.name.ToUpper(),zackBaun.name.ToUpper(),akeemDavisGaither.name.ToUpper(), troyDye.name.ToUpper(),jedrickWillsJr.name.ToUpper(),andrewThomas.name.ToUpper(),tristanWirfs.name.ToUpper(),
+                                tylerBiadasz.name.ToUpper(),mekhiBecton.name.ToUpper()
+            };
+            // Player prices array to get the price of the chosen player
+            int[] playerPrices = { joeBurrow.price, tuaTagoVailoa.price, justinHerbert.price, jordanLove.price, jakeFromm.price, deandreSwift.price, jonathanTaylor.price, jkDobbins.price, zackMoss.price, camAtkers.price, ceeDeeLamb.price,
+                                    jerryJeudy.price,teeHiggins.price,henryRuggsIII.price,tylerJohnson.price, chaseYoung.price, derrickBrown.price, ajEpenesa.price, javonKinlaw.price, yeturGrossMatos.price, jeffOkudah.price, grantDelpit.price,
+                                    kristianFulton.price, xavierMckinney.price, cjHenderson.price, coleKmet.price, brycenHopkins.price, hunterBryant.price,jaredPinkney.price,jacobBreeland.price, isaiahSimmons.price,kennethMurray.price,zackBaun.price,
+                                    akeemDavisGaither.price,troyDye.price,jedrickWillsJr.price,andrewThomas.price,tristanWirfs.price,tylerBiadasz.price,mekhiBecton.price
+            };
+            // Budget array so the budget gets updated everytime the user enters a player
             int[] budgets = { 95000000, 0, 0, 0, 0, 0 };
-            Console.WriteLine(playerNames[0]);
             string coachPick;
             string coachPick2;
             string coachPick3;
@@ -58,14 +121,20 @@ namespace Project1_practice
             string coachPick5;
             //Welcome message
             welcomeMessage();
-            DisplayQuarterbacks(quarterBacks, positions);
-            DisplayRunningBacks(runningBacks, positions);
-            DisplayWideRecievers(wideRecievers, positions);
+            Console.WriteLine("\t\t\t The best \t\t\t 2nd best \t\t\t 3rd best \t\t\t 4th best \t\t\t 5th best\n");
+            DisplayRowOfPlayers(quarterBacks, positions,0);
+            DisplayRowOfPlayers(runningBacks, positions, 1);
+            DisplayRowOfPlayers(wideRecievers, positions, 2);
+            DisplayRowOfPlayers(defensiveLinemen, positions, 3);
+            DisplayRowOfPlayers(defensiveBacks, positions, 4);
+            DisplayRowOfPlayers(tightEnds, positions, 5);
+            DisplayRowOfPlayers(lineBackers, positions, 6);
+            DisplayRowOfPlayers(offensiveTackles, positions, 7);
 
             while (true)
             {
                 //Pick 1
-                Console.WriteLine("Please enter a player");
+                Console.WriteLine("Please enter the player you would like to draft.");
                 coachPick = Console.ReadLine();
                 coachPick = coachPick.ToUpper();
                 GetChosenPlayerAndPrice(playerNames, coachPick, playerPrices, budgets, 0, 1);
@@ -99,10 +168,12 @@ namespace Project1_practice
                 }
                 else if (yesOrNoDecision == "N")
                 {
+                    EndMessage(budgets, 1);
                     break;
                 }
                 else if (yesOrNoDecision == "n")
                 {
+                    EndMessage(budgets, 1);
                     break;
                 }
                 else
@@ -150,10 +221,12 @@ namespace Project1_practice
                 }
                 else if (yesOrNoDecision == "N")
                 {
+                    EndMessage(budgets, 2);
                     break;
                 }
                 else if (yesOrNoDecision == "n")
                 {
+                    EndMessage(budgets, 2);
                     break;
                 }
                 else
@@ -211,10 +284,12 @@ namespace Project1_practice
                 }
                 else if (yesOrNoDecision == "N")
                 {
+                    EndMessage(budgets, 3);
                     break;
                 }
                 else if (yesOrNoDecision == "n")
                 {
+                    EndMessage(budgets, 3);
                     break;
                 }
                 else
@@ -282,10 +357,12 @@ namespace Project1_practice
                 }
                 else if (yesOrNoDecision == "N")
                 {
+                    EndMessage(budgets, 4);
                     break;
                 }
                 else if (yesOrNoDecision == "n")
                 {
+                    EndMessage(budgets, 4);
                     break;
                 }
                 else
@@ -311,6 +388,12 @@ namespace Project1_practice
                 }
             }
         }
+        public static void EndMessage(int[] budget, int budgetPos)
+        {
+            Console.Clear();
+            Console.WriteLine("You ended the draft with " + budget[budgetPos].ToString("c")+" left to spend.");
+            Console.WriteLine("Enjoy your new players and good luck!");
+        }
 
 
         //Gives attributes to the player object
@@ -332,50 +415,23 @@ namespace Project1_practice
         {
             Console.WriteLine("Welcome to the 2020 draft program!");
             Console.WriteLine("You can take up to 5 picks for the draft without exceeding your $95,000,000 budget.");
-            Console.WriteLine("If you select any 3 players in the best, 2nd best, or 3rd best category under $65,000,000, you get a cost effective message");
+            Console.WriteLine("If you select any 3 players in the best, 2nd best, or 3rd best category under $65,000,000,");
+            Console.WriteLine("you get a cost effective message.");
             Console.WriteLine("Press any key to continue and go fullscreen after you enter the key.");
             Console.ReadKey();
             Console.Clear();
 
         }
-        //Displays Quarter Backs
-        public static void DisplayQuarterbacks(String[,] quarterbacks, string[] positions)
-        {
-            Console.WriteLine($"\t\t\t The best \t\t\t 2nd best \t\t\t 3rd best \t\t\t 4th best \t\t\t 5th best\n");
-            Console.Write(positions[0] + "\t");
-            for (var i = 0; i < quarterbacks.GetLength(0); i++)
-            {
-                for (var x = 0; x < quarterbacks.GetLength(1); x++)
-                {
-                    Console.Write($"{quarterbacks[i, x]} ");
-                }
-                Console.WriteLine("");
-            }
-        }
-        //Displays running Backs
-        public static void DisplayRunningBacks(String[,] runningbacks, string[] positions)
+        //Displays row of players based off what position they play
+        public static void DisplayRowOfPlayers(String[,] playerPos, string[] positions, int positionPos)
         {
             Console.WriteLine("");
-            Console.Write(positions[1] + "\t");
-            for (var i = 0; i < runningbacks.GetLength(0); i++)
+            Console.Write(positions[positionPos] + "\t");
+            for (var i = 0; i < playerPos.GetLength(0); i++)
             {
-                for (var x = 0; x < runningbacks.GetLength(1); x++)
+                for (var x = 0; x < playerPos.GetLength(1); x++)
                 {
-                    Console.Write($"{runningbacks[i, x]}");
-                }
-                Console.WriteLine("");
-            }
-        }
-        //Displays wide recievers
-        public static void DisplayWideRecievers(String[,] wideRecievers, string[] positions)
-        {
-            Console.WriteLine($"\t\t\t The best \t\t\t 2nd best \t\t\t 3rd best \t\t\t 4th best \t\t\t 5th best\n");
-            Console.Write(positions[2] + "\t");
-            for (var i = 0; i < wideRecievers.GetLength(0); i++)
-            {
-                for (var x = 0; x < wideRecievers.GetLength(1); x++)
-                {
-                    Console.Write($"{wideRecievers[i, x]} ");
+                    Console.Write($"{playerPos[i, x]} ");
                 }
                 Console.WriteLine("");
             }
