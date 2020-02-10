@@ -6,20 +6,29 @@ namespace Project1_practice
     {
         static void Main(string[] args)
         {
+            // Quarterbacks
             Player joeBurrow = NewPlayer("Joe Burrow", "LSU", 26400100);
             Player tuaTagoVailoa = NewPlayer("Tua Tagovailoa", "Alabama", 20300100);
             Player justinHerbert = NewPlayer("Justin Herbert", "Oregon", 17420300);
             Player jordanLove = NewPlayer("Jordan Love", "Utah St.", 13100145);
             Player jakeFromm = NewPlayer("Jake Fromm", "Georgia", 10300000);
-            //Running Backs list
+            //Running backs
             Player deandreSwift = NewPlayer("D'Andre Swift", "Georgia", 24500100);
             Player jonathanTaylor = NewPlayer("Jonathan Taylor", "Wisconsin", 19800200);
             Player jkDobbins = NewPlayer("J.K. Dobbins", "Ohio State", 18700800);
             Player zackMoss = NewPlayer("Zack Moss", "Utah", 15000000);
             Player camAtkers = NewPlayer("Cam Atkers", "Florida St.", 11600400);
-            // Positions lsit
+            //Wide recievers
+            Player ceeDeeLamb = NewPlayer("CeeDee Lamb", "Oklahoma", 23400000);
+            Player jerryJeudy = NewPlayer("Jerry Jeudy", "Alabama", 21900300);
+            Player teeHiggins = NewPlayer("Tee Higgins", "Clemson", 19300230);
+            Player henryRuggsIII = NewPlayer("Henry Ruggs III", "Alabama", 13400230);
+            Player tylerJohnson = NewPlayer("Tyler Johnson", "Minnesota", 10000000);
+            //Defensive linemen
+            Player chaseYoung = NewPlayer("Chase Young", "Ohio St.", 26200300);
+            // Positions list
             string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers" };
-            // Multi Dimensional Arrays for each player position
+            // Multi-Dimensional arrays for each player position
             String[,] quarterBacks = {
                 { "\t"+joeBurrow.name.ToUpper(), "\t\t\t"+tuaTagoVailoa.name.ToUpper(), "\t\t\t"+justinHerbert.name.ToUpper(), "\t\t\t"+jordanLove.name.ToUpper(), "\t\t\t"+jakeFromm.name.ToUpper() },
                 { "\t\t\t"+joeBurrow.school, "\t\t\t\t"+tuaTagoVailoa.school, "\t\t\t"+justinHerbert.school, "\t\t\t\t"+jordanLove.school, "\t\t\t"+jakeFromm.school},
@@ -30,6 +39,13 @@ namespace Project1_practice
                 {"\t\t\t"+deandreSwift.school, "\t\t\t\t"+jonathanTaylor.school, "\t\t\t"+jkDobbins.school,"\t\t\t"+zackMoss.school,"\t\t\t\t"+camAtkers.school },
                 {"\t\t\t"+deandreSwift.price.ToString("c"), "\t\t\t"+jonathanTaylor.price.ToString("c"), "\t\t\t"+jkDobbins.price.ToString("c"),"\t\t\t"+zackMoss.price.ToString("c"),"\t\t\t"+camAtkers.price.ToString("c") }
             };
+            String[,] wideRecievers =
+            {
+                {"\t"+ceeDeeLamb.name.ToUpper(),"\t\t\t"+jerryJeudy.name.ToUpper(),"\t\t\t"+teeHiggins.name.ToUpper(),"\t\t\t"+henryRuggsIII.name.ToUpper(),"\t\t\t"+tylerJohnson.name.ToUpper() },
+                {"\t\t\t"+ceeDeeLamb.school,"\t\t\t"+jerryJeudy.school,"\t\t\t"+teeHiggins.school,"\t\t\t"+henryRuggsIII.school,"\t\t\t\t"+tylerJohnson.school },
+                {"\t\t\t"+ceeDeeLamb.price.ToString("c"),"\t\t\t"+jerryJeudy.price.ToString("c"),"\t\t\t"+teeHiggins.price.ToString("c"),"\t\t\t"+henryRuggsIII.price.ToString("c"),"\t\t\t"+tylerJohnson.price.ToString("c") }
+            };
+
             String[] playerNames ={joeBurrow.name.ToUpper(), tuaTagoVailoa.name.ToUpper(),justinHerbert.name.ToUpper(),jordanLove.name.ToUpper(),jakeFromm.name.ToUpper(),deandreSwift.name.ToUpper(),jonathanTaylor.name.ToUpper(),
                                 jkDobbins.name.ToUpper(),zackMoss.name.ToUpper(),camAtkers.name.ToUpper()};
             int[] playerPrices = { joeBurrow.price, tuaTagoVailoa.price, justinHerbert.price, jordanLove.price, jakeFromm.price, deandreSwift.price, jonathanTaylor.price, jkDobbins.price, zackMoss.price, camAtkers.price };
@@ -44,6 +60,7 @@ namespace Project1_practice
             welcomeMessage();
             DisplayQuarterbacks(quarterBacks, positions);
             DisplayRunningBacks(runningBacks, positions);
+            DisplayWideRecievers(wideRecievers, positions);
 
             while (true)
             {
@@ -335,7 +352,7 @@ namespace Project1_practice
                 Console.WriteLine("");
             }
         }
-        //Displays Running Backs
+        //Displays running Backs
         public static void DisplayRunningBacks(String[,] runningbacks, string[] positions)
         {
             Console.WriteLine("");
@@ -345,6 +362,20 @@ namespace Project1_practice
                 for (var x = 0; x < runningbacks.GetLength(1); x++)
                 {
                     Console.Write($"{runningbacks[i, x]}");
+                }
+                Console.WriteLine("");
+            }
+        }
+        //Displays wide recievers
+        public static void DisplayWideRecievers(String[,] wideRecievers, string[] positions)
+        {
+            Console.WriteLine($"\t\t\t The best \t\t\t 2nd best \t\t\t 3rd best \t\t\t 4th best \t\t\t 5th best\n");
+            Console.Write(positions[2] + "\t");
+            for (var i = 0; i < wideRecievers.GetLength(0); i++)
+            {
+                for (var x = 0; x < wideRecievers.GetLength(1); x++)
+                {
+                    Console.Write($"{wideRecievers[i, x]} ");
                 }
                 Console.WriteLine("");
             }
