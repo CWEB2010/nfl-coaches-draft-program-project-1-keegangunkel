@@ -57,6 +57,10 @@ namespace Project1_practice
 
             // Positions list
             string[] positions = { "Quarterbacks", "Running Backs", "Wide Recievers", "Defensive Linemen", "Defensive Backs", "Tight Ends", "Line-Backer's", "Offensive Tackles"};
+            // Cost-effective players
+            string[] costEffectivePlayers = {joeBurrow.name.ToUpper(),tuaTagoVailoa.name.ToUpper(),justinHerbert.name.ToUpper(),deandreSwift.name.ToUpper(),jonathanTaylor.name.ToUpper(),jkDobbins.name.ToUpper(),ceeDeeLamb.name.ToUpper(), jerryJeudy.name.ToUpper(),teeHiggins.name.ToUpper(),chaseYoung.name.ToUpper(),
+                                             derrickBrown.name.ToUpper(),ajEpenesa.name.ToUpper(),jeffOkudah.name.ToUpper(),grantDelpit.name.ToUpper(),kristianFulton.name.ToUpper(),coleKmet.name.ToUpper(),brycenHopkins.name.ToUpper(),hunterBryant.name.ToUpper(),isaiahSimmons.name.ToUpper(),kennethMurray.name.ToUpper(),zackBaun.name.ToUpper()
+                                              ,jedrickWillsJr.name.ToUpper(),andrewThomas.name.ToUpper(),tristanWirfs.name.ToUpper()};
             // Multi-Dimensional arrays for each player position
             String[,] quarterBacks = {
                 { "\t"+joeBurrow.name.ToUpper(), "\t\t\t"+tuaTagoVailoa.name.ToUpper(), "\t\t\t"+justinHerbert.name.ToUpper(), "\t\t\t"+jordanLove.name.ToUpper(), "\t\t\t"+jakeFromm.name.ToUpper() },
@@ -114,6 +118,7 @@ namespace Project1_practice
             };
             // Budget array so the budget gets updated everytime the user enters a player
             int[] budgets = { 95000000, 0, 0, 0, 0, 0 };
+            int costEffectivePlayersPicked = 0;
             string coachPick;
             string coachPick2;
             string coachPick3;
@@ -138,6 +143,14 @@ namespace Project1_practice
                 coachPick = Console.ReadLine();
                 coachPick = coachPick.ToUpper();
                 GetChosenPlayerAndPrice(playerNames, coachPick, playerPrices, budgets, 0, 1);
+                // Finds out if player picked is cost effective
+                for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                {
+                    if (coachPick == costEffectivePlayers[i])
+                    {
+                        costEffectivePlayersPicked++;
+                    }
+                }
             //Decision1 and pick 2
             Decision1:
                 Console.WriteLine("Would you like to pick another player? Y/N");
@@ -152,6 +165,14 @@ namespace Project1_practice
                         Console.WriteLine("Please enter a player you haven't picked yet.");
                         coachPick2 = Console.ReadLine();
                     }
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick2 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                        }
+                    }
                     GetChosenPlayerAndPrice(playerNames, coachPick2, playerPrices, budgets, 1, 2);
                 }
                 else if (yesOrNoDecision == "y")
@@ -163,6 +184,14 @@ namespace Project1_practice
                     {
                         Console.WriteLine("Please enter a player you haven't picked yet.");
                         coachPick2 = Console.ReadLine();
+                    }
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick2 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                        }
                     }
                     GetChosenPlayerAndPrice(playerNames, coachPick2, playerPrices, budgets, 1, 2);
                 }
@@ -200,6 +229,23 @@ namespace Project1_practice
                         Console.WriteLine("Please enter a player you haven't picked yet.");
                         coachPick3 = Console.ReadLine();
                     }
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick3 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                            if (costEffectivePlayersPicked == 3)
+                            {
+                                if (budgets[2] >= 30000000)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("\nYou were cost effective");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                        }
+                    }
                     GetChosenPlayerAndPrice(playerNames, coachPick3, playerPrices, budgets, 2, 3);
                 }
                 else if (yesOrNoDecision == "y")
@@ -218,6 +264,23 @@ namespace Project1_practice
                         coachPick3 = Console.ReadLine();
                     }
                     GetChosenPlayerAndPrice(playerNames, coachPick3, playerPrices, budgets, 2, 3);
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick3 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                            if (costEffectivePlayersPicked == 3)
+                            {
+                                if (budgets[2] >= 30000000)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("\nYou were cost effective");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -242,7 +305,7 @@ namespace Project1_practice
                 {
                     Console.WriteLine("Who would you like to pick?");
                     coachPick4 = Console.ReadLine();
-                    coachPick4 = coachPick3.ToUpper();
+                    coachPick4 = coachPick4.ToUpper();
                     if (coachPick4 == coachPick3)
                     {
                         Console.WriteLine("Please enter a player you haven't picked yet.");
@@ -259,12 +322,29 @@ namespace Project1_practice
                         coachPick4 = Console.ReadLine();
                     }
                     GetChosenPlayerAndPrice(playerNames, coachPick4, playerPrices, budgets, 3, 4);
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick4 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                            if (costEffectivePlayersPicked == 3)
+                            {
+                                if (budgets[3] >= 30000000)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("\nYou were cost effective");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (yesOrNoDecision == "y")
                 {
                     Console.WriteLine("Who would you like to pick?");
                     coachPick4 = Console.ReadLine();
-                    coachPick4 = coachPick3.ToUpper();
+                    coachPick4 = coachPick4.ToUpper();
                     if (coachPick4 == coachPick3)
                     {
                         Console.WriteLine("Please enter a player you haven't picked yet.");
@@ -281,6 +361,23 @@ namespace Project1_practice
                         coachPick4 = Console.ReadLine();
                     }
                     GetChosenPlayerAndPrice(playerNames, coachPick4, playerPrices, budgets, 3, 4);
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick4 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                            if (costEffectivePlayersPicked == 3)
+                            {
+                                if (budgets[3] >= 30000000)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("\nYou were cost effective");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -327,6 +424,23 @@ namespace Project1_practice
                         coachPick5 = Console.ReadLine();
                     }
                     GetChosenPlayerAndPrice(playerNames, coachPick5, playerPrices, budgets, 4, 5);
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick5 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                            if (costEffectivePlayersPicked == 3)
+                            {
+                                if (budgets[4] >= 30000000)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("\nYou were cost effective");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (yesOrNoDecision == "y")
                 {
@@ -354,6 +468,23 @@ namespace Project1_practice
                         coachPick5 = Console.ReadLine();
                     }
                     GetChosenPlayerAndPrice(playerNames, coachPick5, playerPrices, budgets, 4, 5);
+                    // Finds out if player picked was cost effective
+                    for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
+                    {
+                        if (coachPick5 == costEffectivePlayers[i])
+                        {
+                            costEffectivePlayersPicked++;
+                            if (costEffectivePlayersPicked == 3)
+                            {
+                                if (budgets[4] >= 30000000)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("\nYou were cost effective");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (yesOrNoDecision == "N")
                 {
@@ -384,7 +515,6 @@ namespace Project1_practice
                     Console.WriteLine("The cost " + prices[i].ToString("c"));
                     budgets[newBudgetPos] = budgets[budgetPos] - prices[i];
                     Console.WriteLine("You have " + budgets[newBudgetPos].ToString("c") + " left to spend");
-
                 }
             }
         }
@@ -405,7 +535,6 @@ namespace Project1_practice
             aPlayer.school = playerSchool;
             aPlayer.price = playerCost;
             aPlayer.bio = playerName + "\n" + "(" + playerSchool + ")" + "\n" + playerCost.ToString("c") + "\n";
-            //Console.WriteLine(aPlayer.bio);
             return aPlayer;
 
 
