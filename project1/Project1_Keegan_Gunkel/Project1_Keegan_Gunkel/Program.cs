@@ -229,6 +229,7 @@ namespace Project1_practice
                         Console.WriteLine("Please enter a player you haven't picked yet.");
                         coachPick3 = Console.ReadLine();
                     }
+                    GetChosenPlayerAndPrice(playerNames, coachPick3, playerPrices, budgets, 2, 3);
                     // Finds out if player picked was cost effective
                     for (var i = 0; i < costEffectivePlayers.GetLength(0); i++)
                     {
@@ -246,7 +247,6 @@ namespace Project1_practice
                             }
                         }
                     }
-                    GetChosenPlayerAndPrice(playerNames, coachPick3, playerPrices, budgets, 2, 3);
                 }
                 else if (yesOrNoDecision == "y")
                 {
@@ -511,10 +511,17 @@ namespace Project1_practice
             {
                 if (playerPick == names[i])
                 {
-                    Console.WriteLine("You picked " + names[i]);
-                    Console.WriteLine("The cost " + prices[i].ToString("c"));
-                    budgets[newBudgetPos] = budgets[budgetPos] - prices[i];
-                    Console.WriteLine("You have " + budgets[newBudgetPos].ToString("c") + " left to spend");
+                    if (budgets[budgetPos] >= 0)
+                    {
+                        Console.WriteLine("You picked " + names[i]);
+                        Console.WriteLine("The cost " + prices[i].ToString("c"));
+                        budgets[newBudgetPos] = budgets[budgetPos] - prices[i];
+                        Console.WriteLine("You have " + budgets[newBudgetPos].ToString("c") + " left to spend");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error you don't have enough money for that player");
+                    }
                 }
             }
         }
